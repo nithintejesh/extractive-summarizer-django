@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Text Summarizer to generate summaries from URLs.">
+    <meta name="author" content="Nithin Tejesh">
+    <title>Text Summarizer</title>
+    <link rel="stylesheet" href="{% static 'summarizer/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="title-container">
+            <h1 class="project-title">Text Summarizer</h1>
+        </div>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="{% url 'summarizer:summarize' %}" class="active">URL Input</a></li>
+                <li><a href="#" aria-disabled="true">Upload PDF (Coming Soon)</a></li>
+                <li><a href="#" aria-disabled="true">Text Input (Coming Soon)</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <section class="input-section">
+            <form method="post" aria-labelledby="input-form">
+                {% csrf_token %}
+                <div class="input-wrapper">
+                    <input type="url" name="url" placeholder="Paste URL here" required aria-label="URL input">
+                    <button type="button" id="paste-button">Paste</button>
+                    <button type="submit" class="submit-button">Summarize</button>
+                </div>
+            </form>
+        </section>
+        
+        <section class="result-section">
+            <!-- <p class="summary-message">Your summary will be displayed here once generated:</p> -->
+            <textarea readonly class="summary-textarea" aria-label="Summary">{{ summary }}</textarea>
+        </section>
+    </main>
+    <script src="{% static 'summarizer/js/script.js' %}"></script>
+    <script>
+        
+    </script>
+</body>
+</html>
